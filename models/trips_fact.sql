@@ -3,7 +3,7 @@
 with trips as (
     select
     replace(ID, '"', '') as ID,
-    replace(type, '"', '') as TYPE,
+    -- replace(type, '"', '') as TYPE,
     date(to_timestamp(replace(STARTED_AT, '"', ''))) as date,
     replace(START_STATION_ID, '"', '') as START_STATION_ID,
     replace(END_STATION_ID, '"', '') as END_STATION_ID,
@@ -13,5 +13,6 @@ with trips as (
 
     from
     {{ source('demo_source', 'BIKE_TABLE') }}
+    limit 10
 )
 select * from trips
